@@ -8,6 +8,20 @@ This is where the proposal should be outlined.
 At a high-level address what your proposal is and how it will address the problem identified. Highlight any benefits to the R Community that follow from solving the problem. This should be your most compelling section.
 -->
 
+There are three areas that need to be tackled, and we propose to develop an R package for each of them.
+
+### Tools for working with PO files
+
+Thomas Leeper's [`msgtools`](https://github.com/leeper/msgtools) package provides a wrapper for the translation functionality in the `tools` package.  It is currently a work-in-progress.  We propose to develop this package to be robust, well documented, and easy for novice package developers to use.
+
+### Tools for finding people to translate content
+
+Thomas Leeper's [`MTurkR`](https://github.com/leeper/MTurkR) package provides an interface between R and Amazon's Mechanical Turk API, a marketplace for human intelligence tasks (HITs), including translation tasks.  We propose to a develop a package that wraps `MTurkR`, with functionality for creating and managing translation HITs.
+
+### Tools for automated translation
+
+[Google Translate](https://translate.google.com) is a service for automated translation of text between 90 languages.  We propose to create an R package that provides an interface between R and the [Google Translate API](https://cloud.google.com/translate/v2/getting_started).
+
 ## Detail
 <!--
 Go into more detail about the specifics of the project and it delivers against the problem.
