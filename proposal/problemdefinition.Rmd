@@ -10,4 +10,44 @@ It is important to cover:
  - [ ] Why it should be tackled
 -->
 
+## What the problem is
+
+R is used throughout the world.  The Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
+
+R has been translated into 20 languages (http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations **TODO: download all packages from CRAN, count how many have a po dir, and how many translations are in each; maybe draw a histogram.**
+
+## Who it affects
+
+For users who are not native speakers of English, the lack of localized content at best constitutes a productivity drain (since it takes longer to understand what an error message means), and at worst may discourage them from using R instead of a tools which fully supports their language.
+
+## Have there been previous attempts to resolve the problem?
+
+There are some resources for available for translation, but both the documentation and R functions have problems.
+
+The official documentation is split between three sources:  
+1. The [Internationalization](http://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Internationalization) section of *Writing R Extensions*.  
+2. The [Localization of messages](http://cran.r-project.org/doc/manuals/r-devel/R-admin.html#Localization-of-messages) section of *R Installation and Administration*.  
+3. The [Translations](http://developer.r-project.org/Translations30.html) page of the *R Developer Guidance*.  
+
+There is currently no single, developer-friendly docuemtn that decribes how to translate your package content.
+
+The `tools` package in the base-R distribution provide some functionality for working with the translation files, but manual editing of the files is often required, and errors are hard to debug.
+
+Beyond this, finding multi-linugal R programmers with enough free time to undertake translation duties is even harder. 
+
+## Why it should be tackled
+
+In order for R to take over the world (of data analysis), better tools are needed to encourage package developers to have their content translated.
+
+## How does this project align with the R consortium's goals?
+
+This project will align with the R consortium's goals, particularly:
+
+(a) advance the worldwide promotion of and support for the R open source language and environment as the preferred language for statistical computing and graphics (the “Environment”);
+
+By providing better translation tools, R will be easier to use in parts of the world where English is not the first language of the population.
+
+(c) encourage and increase user adoption, involvement with, and contribution to, the Environment; 
+
+By making R easier to use for these non-English speaking demographics, it will increaes user adoption.
 
