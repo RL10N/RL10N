@@ -1,6 +1,6 @@
-proposal<-"Boilerplate ISC Proposal"
+proposal<-"RL10N: R Localization Proposal"
 proposal.file<-"isc-proposal.Rmd"
-author<-"Steph Locke"
+author<-"Richie Cotton and Thomas Leeper"
 
 rmarkdown::render(proposal.file, output_format="html_document",
                   output_dir="out", quiet=TRUE)

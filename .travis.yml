@@ -1,49 +1,35 @@
-# .travis.yml using container-based infrastructure (https://github.com/jtilly/R-travis-container-example)
-
-# use c as catch-all language
 language: c
-
-# use containers
 sudo: false
-
-# install R: use r-packages-precise (https://cran.r-project.org/bin/linux/ubuntu/precise/) 
-# as source which is white listed (https://github.com/travis-ci/apt-source-whitelist/)
 addons:
   apt:
     sources:
     - r-packages-precise
     packages:
-    - r-base-dev	
+    - r-base-dev
     - r-recommended
-
-# cache local R libraries directory:
 cache:
   directories:
-    - ~/Rlib
-    - $HOME/bin
-    - $HOME/texlive
-
+  - "~/Rlib"
+  - "$HOME/bin"
+  - "$HOME/texlive"
 before_install:
-  - export PATH=$HOME/bin:$HOME/texlive/bin/x86_64-linux:$PATH
-  - chmod 755 ./.push_gh_pages.sh
-  - chmod 755 ./ghgenerate.R
-
-
-# install the package and dependencies:
-# - create directory for R libraries (if not already exists)
-# - create .Renviron with location of R libraries
-# - install rmarkdown if not already installed
-# - update all installed packages
-# - execute proposal gen
+- export PATH=$HOME/bin:$HOME/texlive/bin/x86_64-linux:$PATH
+- chmod 755 ./.push_gh_pages.sh
+- chmod 755 ./ghgenerate.R
 install:
-  - mkdir -p ~/Rlib
-  - mkdir -p $HOME/bin
-  - echo 'R_LIBS=~/Rlib' > .Renviron
-  - echo 'options(repos = "http://cran.rstudio.com")' > .Rprofile
-  - "wget -q -O - https://github.com/yihui/crandalf/raw/master/inst/scripts/install-texlive | bash"
-  - "wget -q -O - https://github.com/yihui/crandalf/raw/master/inst/scripts/install-pandoc | bash"
-  - Rscript -e 'if(!"rmarkdown" %in% rownames(installed.packages())) { install.packages("rmarkdown", dependencies = TRUE) }'
-  - Rscript -e 'update.packages(ask = FALSE, instlib = "~/Rlib")'
-
+- mkdir -p ~/Rlib
+- mkdir -p $HOME/bin
+- echo 'R_LIBS=~/Rlib' > .Renviron
+- echo 'options(repos = "http://cran.rstudio.com")' > .Rprofile
+- wget -q -O - https://github.com/yihui/crandalf/raw/master/inst/scripts/install-texlive
+  | bash
+- wget -q -O - https://github.com/yihui/crandalf/raw/master/inst/scripts/install-pandoc
+  | bash
+- Rscript -e 'if(!"rmarkdown" %in% rownames(installed.packages())) { install.packages("rmarkdown",
+  dependencies = TRUE) }'
+- Rscript -e 'update.packages(ask = FALSE, instlib = "~/Rlib")'
 script:
-  - ./.push_gh_pages.sh
+- "./.push_gh_pages.sh"
+env:
+  global:
+    secure: JQB/O5sitNAOCQ5VnfJrKeR2ISBgxDg7JYkuc8WVJRwvfjuKqx0NCfOoB+BUNLP/SHbILslSpNOSb/a+72OnPP1sN/bPtq65yry60HivfAzYyzQZprN3VSi3XQZfnFxdUextz5rXAO6oBj4s2ibJ/hAoUOIRxXDwMrjgLiF2Bs0ThjQ9BZlWDMqFXDaHfFIIJogaDoL89X3cn7HT0DJjxcZpWWeM13ctgsh2dAwEJzRQ+zN7GG5UFp721IBFbHpTMInrRO2U42l/QcRldVPpF+FTVOWcqjBmbCsZQqZNAIY9nTCXA5+tyFlVKpQh36rRze18IkxwUvCL2ETZitow83HmYogcxHOmWq1+XV6mckexC2I3PY/z2HurxBQUDaGif3CQ4dXytOikzJNWxvelmiRFC6HxRs06wiFxM7EKSsE1i13nJL3gQlAnO2Y0OeMa90qiFPF0HMuMWxjJWgQGrnumF58pFhoBEWoIl9XFF4uCocZ4LvVgQbG8A1g3hPGfh8Rb3uJ7wD7sIsNRYQ1kgjT2kkhfUIUwlQnaySt4hkoHISGOLOyGmbqB4bOuFV4aL9tr+W8OhgILuyHUuQQIsq9It6TG8NdaICsGCRSJlDjdOHCG3jS65p8cPY1lx8yD+hGPSrMUlcr008hkIF6/ZsKZkyLHh1UspWtyoBenJNo=
