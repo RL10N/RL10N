@@ -14,7 +14,7 @@ It is important to cover:
 
 R is used throughout the world.  The Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
 
-R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations **TODO: download all packages from CRAN, count how many have a po dir, and how many translations are in each; maybe draw a histogram.**
+R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations. Indeed of the 8274 packages on CRAN (actually, as mirrored on GitHub from CRAN), only 59 have any installed translations. **TODO: download all packages from CRAN, count how many have a po dir, and how many translations are in each; maybe draw a histogram.**
 
 ## Who it affects
 
