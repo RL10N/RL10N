@@ -14,7 +14,31 @@ It is important to cover:
 
 R is used throughout the world.  The Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
 
-R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations. Indeed of the 8274 packages on CRAN (actually, as mirrored on GitHub from CRAN), only 59 have any installed translations. **TODO: download all packages from CRAN, count how many have a po dir, and how many translations are in each; maybe draw a histogram.**
+```{r, HowManyTranslations, echo = FALSE}
+library(dplyr)
+n_trans_data <- readRDS("../data/n_translations.rds")
+n_pkgs_with_trans <- n_trans_data %>% 
+  filter_(~ x > 0) %>% 
+  summarise_(~ sum(freq)) %>% 
+  as.integer
+
+n_pkgs_with_1_trans <- n_trans_data %>% 
+  filter_(~ x == 1) %>% 
+  summarise_(~ sum(freq)) %>% 
+  as.integer  
+```
+
+R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations. Indeed of the 8274 packages on CRAN (actually, as mirrored on GitHub from CRAN), only `r n_pkgs_with_trans` have any installed translations. Of those, `r n_pkgs_with_1_trans` have only a single translation.  As Figure 1 shows, the number of translated packages is almost indistinguishable from zero.
+
+
+```{r, NumberOfTranslations, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 1: Number of translations in R packages."}
+library(ggplot2)
+(p <- ggplot(n_trans_data, aes(x, freq)) +
+  geom_histogram(binwidth = 1, stat = "identity") +
+  xlab("Number of translations") +
+  ylab("Count")
+)
+```
 
 ## Who it affects
 

@@ -1,8 +1,10 @@
 ---
 title: "`r proposal`"
-author: "`r author`"
+author: "Richie Cotton and Thomas Leeper"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document:
+    fig_caption: yes
 ---
 
 ```{r setup, eval=TRUE, results='hide', echo=FALSE}
