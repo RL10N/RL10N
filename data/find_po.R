@@ -91,7 +91,6 @@ saveRDS(n_translations_per_pkg, "data/n_translations_per_pkg.rds")
 )  
 
 
-
 # Count use of languages
 n_translations_by_lang <- translations_by_lang %>%
   unlist(use.names = FALSE) %>%
@@ -108,13 +107,3 @@ saveRDS(n_translations_by_lang, "data/n_translations_by_lang.rds")
   xlab("Language") +
   ylab("Count")
 )
-
-par(mar = c(4, 6, 0, 1))
-barplot(sort(table(translations2), decreasing = TRUE), xlab = "Number of package-level translations", 
-        cex.names = 0.6, las = 1, horiz = TRUE, xaxs = "i")
-dev.copy(png, file = "po_distribution.png", width = 1000, height = 1000, res = 200)
-dev.off()
-
-
-
->>>>>>> 4da650978f3d9b104d45ab6ce2f8ef4798bb5201
