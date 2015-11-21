@@ -1,3 +1,7 @@
+library(plyr)
+library(magrittr)
+library(ggplot2)
+library(stringi)
 
 # scrape GitHub CRAN mirror
 # source("scrape_has_po.R")
@@ -22,57 +26,95 @@ pkg_has_po <- vapply(pkg_contents, function(x) {
 table(pkg_has_po)
 
 # identify packages
-pkg_names[which(pkg_has_po)]
+(pkgs_with_po <- pkg_names[pkg_has_po])
 
+# Get the contents of the po dir
+if(!file.exists("data/gh_po_langs.RDS"))
+{
+  langs <- setNames(lapply(pkgs_with_po, function(x) {
+      r <- try(gh("/repos/cran/:repo/contents/po", repo = x))
+      if(inherits(r, "try-error")) {
+          return(NULL)
+      } else {
+          return(sapply(r, `[[`, "name"))
+      }
+  }), has_po)
+  saveRDS(langs, "data/gh_po_langs.RDS")
+} else
+{
+  langs <- readRDS("data/gh_po_langs.RDS")
+}
 
-pkgs_with_po <- pkg_names[pkg_has_po]
-
-# Download the pkgs with po to a new library
-# (dependencies get downloaded too)
-new_r_lib <- "~/r_lib_po"
-dir.create(new_r_lib)
-install.packages(pkgs_with_po, lib = new_r_lib)
-
-# Did they all install OK?
-installed <- dir(new_r_lib)
-fails <- setdiff(pkgs_with_po, installed)
-
-
-# For each po pkg, count the number of subdirectories in the po directory.
-n_translations <- vapply(
-  installed,
+# Count the number of translations by pkg
+# Do this next bit in two steps so we can reuse translations_by_lang
+translations_by_lang <- lapply(
+  langs,
   function(x)
   {
-    po_files <- dir(
-      file.path(new_r_lib, x, "po")
-    )
-    length(po_files)
-  },
+    po_files <- x[grepl(".po$", x)]
+    po_files %>%
+      stri_replace_first_regex("^R-", "") %>%
+      stri_replace_first_regex("\\.po$", "") %>%
+      stri_replace_first_regex("RcmdrPlugin.EZR", "ja") %>%
+      stri_replace_first_regex("(?:orloca|Rigroup|RcmdrPlugin\\.[[:alnum:]]+)[-]?", "") %>%
+      stri_replace_first_fixed("en@quot", "en") %>%
+      unique
+  }
+)
+
+n_translations_with_po <- vapply(
+  translations_by_lang,
+  length,
   integer(1)
 )
 
-# Data for pkgs that Richie couldn't install, by manual inspection
-# EuclideanMaps has a POT file but no translations
-n_translations <- c(
-  n_translations, 
-  colorout = 13,
-  Rigroup = 1,
-  ROracle = 10
+# Add in some zeroes for pkgs without a po dir
+pkgs_without_po <- pkg_names[!pkg_has_po]
+n_translations_without_po <- setNames(
+  integer(length(pkgs_without_po)),
+  pkgs_without_po
 )
-  
 
 # Count number of translations
-library(plyr)
-n_trans_data <- count(n_translations)
+n_translations_per_pkg <- count(
+  c(n_translations_with_po, n_translations_without_po)
+)
 
-saveRDS(n_trans_data, "data/n_translations.rds")
+saveRDS(n_translations_per_pkg, "data/n_translations_per_pkg.rds")
 
-# Visualize the number of translations
-library(ggplot2)
-(p <- ggplot(n_trans_data, aes(x, freq)) +
+# Visualize the number of translations per pkg
+(p_per_pkg <- n_translations_per_pkg %>% 
+  ggplot(aes(x, freq)) +
   geom_histogram(binwidth = 1, stat = "identity") +
   xlab("Number of translations") +
   ylab("Count")
 )  
 
-  
+
+
+# Count use of languages
+n_translations_by_lang <- translations_by_lang %>%
+  unlist(use.names = FALSE) %>%
+  count
+n_translations_by_lang$x <- with(n_translations_by_lang, reorder(x, freq))
+
+saveRDS(n_translations_by_lang, "data/n_translations_by_lang.rds")
+
+# Visualize the number of translations to each lang
+(p_by_lang <- n_translations_by_lang %>% 
+  ggplot(aes(x, freq)) +
+  geom_histogram(binwidth = 1, stat = "identity") +
+  coord_flip() +
+  xlab("Language") +
+  ylab("Count")
+)
+
+par(mar = c(4, 6, 0, 1))
+barplot(sort(table(translations2), decreasing = TRUE), xlab = "Number of package-level translations", 
+        cex.names = 0.6, las = 1, horiz = TRUE, xaxs = "i")
+dev.copy(png, file = "po_distribution.png", width = 1000, height = 1000, res = 200)
+dev.off()
+
+
+
+>>>>>>> 4da650978f3d9b104d45ab6ce2f8ef4798bb5201

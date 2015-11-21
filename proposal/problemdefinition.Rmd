@@ -15,8 +15,9 @@ It is important to cover:
 R is used throughout the world.  The Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
 
 ```{r, HowManyTranslations, echo = FALSE}
-library(dplyr)
-n_trans_data <- readRDS("../data/n_translations.rds")
+suppressPackageStartupMessages(library(dplyr, quiet = TRUE))
+n_translations_per_pkg <- readRDS("../data/n_translations_per_pkg.rds")
+n_translations_by_lang <- readRDS("../data/n_translations_by_lang.rds")
 n_pkgs_with_trans <- n_trans_data %>% 
   filter_(~ x > 0) %>% 
   summarise_(~ sum(freq)) %>% 
@@ -31,13 +32,26 @@ n_pkgs_with_1_trans <- n_trans_data %>%
 R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations. Indeed of the 8274 packages on CRAN (actually, as mirrored on GitHub from CRAN), only `r n_pkgs_with_trans` have any installed translations. Of those, `r n_pkgs_with_1_trans` have only a single translation.  As Figure 1 shows, the number of translated packages is almost indistinguishable from zero.
 
 
-```{r, NumberOfTranslations, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 1: Number of translations in R packages."}
-library(ggplot2)
-(p <- ggplot(n_trans_data, aes(x, freq)) +
+```{r, NumberOfTranslationsPerPkg, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 1: Number of translations per R package."}
+suppressPackageStartupMessages(library(ggplot2, quiet = TRUE))
+(p_per_pkg <- n_translations_per_pkg %>% 
+  ggplot(aes(x, freq)) +
   geom_histogram(binwidth = 1, stat = "identity") +
   xlab("Number of translations") +
   ylab("Count")
-)
+) 
+```
+
+Further, the selection of languages that are translated to is relatively limited.  As Figure 2 shows ... **TODO: Once we have R User Group numbers (or other usage-of-r stats), pick out any languages with users but no translations.**
+
+```{r, NumberOfTranslationsByLang, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 2: Number of translations by language."}
+(p_by_lang <- n_translations_by_lang %>% 
+  ggplot(aes(x, freq)) +
+  geom_histogram(binwidth = 1, stat = "identity") +
+  coord_flip() +
+  xlab("Language") +
+  ylab("Count")
+) 
 ```
 
 ## Who it affects
@@ -53,7 +67,7 @@ The official documentation is split between three sources:
 2. The [Localization of messages](http://cran.r-project.org/doc/manuals/r-devel/R-admin.html#Localization-of-messages) section of *R Installation and Administration*.  
 3. The [Translations](http://developer.r-project.org/Translations30.html) page of the *R Developer Guidance*.  
 
-There is currently no single, developer-friendly docuemtn that decribes how to translate your package content.
+There is currently no single, developer-friendly document that describes how to translate your package content.
 
 The `tools` package in the base-R distribution provide some functionality for working with the translation files, but manual editing of the files is often required, and errors are hard to debug.
 
@@ -67,7 +81,7 @@ In order for R to take over the world (of data analysis), better tools are neede
 
 This project will align with the R Consortium's goals, particularly:
 
-(a) advance the worldwide promotion of and support for the R open source language and environment as the preferred language for statistical computing and graphics (the “Environment”);
+(a) advance the worldwide promotion of and support for the R open source language and environment as the preferred language for statistical computing and graphics (the "Environment");
 
 By providing better translation tools, R will be easier to use in parts of the world where English is not the first language of the population.
 
