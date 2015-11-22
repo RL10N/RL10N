@@ -12,45 +12,55 @@ It is important to cover:
 
 ## What the problem is
 
-R is used throughout the world.  The [useR!](http://user2015.math.aau.dk/) conference in 2015 attracted [participants from 42 countries](http://blog.revolutionanalytics.com/2015/07/planning-of-and-some-stats-from-user-2015-aalborg.html), and the Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
+R is used throughout the world.  The [useR!](http://user2015.math.aau.dk/) conference in 2015 attracted [participants from 42 countries](http://blog.revolutionanalytics.com/2015/07/planning-of-and-some-stats-from-user-2015-aalborg.html), and the Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations (see Figure 1).
+
+```{r, echo = FALSE, fig.width = 9, fig.height = 8, fig.cap = "Figure 1: Number of R User Groups by country."}
+rug_country_data <- readRDS("../data/rug_country_data.rds")
+(rug_by_country <- rug_country_data %>%
+  ggplot(aes(Country, n, fill = IsEnglishSpeaking)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  xlab(NULL) +
+  ylab("Number of groups") +
+  theme(legend.position = "top")
+)
+```
 
 ```{r, HowManyTranslations, echo = FALSE}
-suppressPackageStartupMessages(library(dplyr, quiet = TRUE))
 n_translations_per_pkg <- readRDS("../data/n_translations_per_pkg.rds")
 n_translations_by_lang <- readRDS("../data/n_translations_by_lang.rds")
-n_pkgs_with_trans <- n_trans_data %>% 
+n_pkgs_with_trans <- n_translations_per_pkg %>% 
   filter_(~ x > 0) %>% 
   summarise_(~ sum(freq)) %>% 
   as.integer
 
-n_pkgs_with_1_trans <- n_trans_data %>% 
+n_pkgs_with_1_trans <- n_translations_per_pkg %>% 
   filter_(~ x == 1) %>% 
   summarise_(~ sum(freq)) %>% 
   as.integer  
 ```
 
-R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations. Indeed of the 8274 packages on CRAN (actually, as mirrored on GitHub from CRAN), only `r n_pkgs_with_trans` have any installed translations. Of those, `r n_pkgs_with_1_trans` have only a single translation.  As Figure 1 shows, the number of translated packages is almost indistinguishable from zero.
+R has been translated into [20 languages](http://developer.r-project.org/TranslationTeams.html) but currently not many packages have translations. Indeed of the 8274 packages on CRAN (actually, as mirrored on GitHub from CRAN), only `r n_pkgs_with_trans` have any installed translations. Of those, `r n_pkgs_with_1_trans` have only a single translation.  As Figure 2 shows, the number of translated packages is almost indistinguishable from zero.
 
 
-```{r, NumberOfTranslationsPerPkg, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 1: Number of translations per R package."}
-suppressPackageStartupMessages(library(ggplot2, quiet = TRUE))
+```{r, NumberOfTranslationsPerPkg, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 2: Number of translations per R package."}
 (p_per_pkg <- n_translations_per_pkg %>% 
   ggplot(aes(x, freq)) +
   geom_histogram(binwidth = 1, stat = "identity") +
   xlab("Number of translations") +
-  ylab("Count")
+  ylab("Count of packages")
 ) 
 ```
 
-Further, the selection of languages that are translated to is relatively limited.  As Figure 2 shows ... **TODO: Once we have R User Group numbers (or other usage-of-r stats), pick out any languages with users but no translations.**
+Further, the selection of languages that are translated to is relatively limited.  As Figure 3 shows ... **TODO: Once we have R User Group numbers (or other usage-of-r stats), pick out any languages with users but no translations.**
 
-```{r, NumberOfTranslationsByLang, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 2: Number of translations by language."}
+```{r, NumberOfTranslationsByLang, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 3: Number of translations by language."}
 (p_by_lang <- n_translations_by_lang %>% 
   ggplot(aes(x, freq)) +
   geom_histogram(binwidth = 1, stat = "identity") +
   coord_flip() +
-  xlab("Language") +
-  ylab("Count")
+  xlab(NULL) +
+  ylab("Count of packages")
 ) 
 ```
 

@@ -9,6 +9,10 @@ output:
 
 ```{r setup, eval=TRUE, results='hide', echo=FALSE}
 knitr::opts_knit$set(warning = FALSE, message= FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+suppressPackageStartupMessages(library(dplyr, quiet = TRUE))
+suppressPackageStartupMessages(library(ggplot2, quiet = TRUE))
+
 ```
 
 
