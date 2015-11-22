@@ -20,7 +20,7 @@ Thomas Leeper's [`MTurkR`](https://github.com/leeper/MTurkR) package provides an
 
 ### Tools for automated translation
 
-[Google Translate](https://translate.google.com) is a service for automated translation of text between 90 languages.  We propose to create an R package that provides an interface between R and the [Google Translate API](https://cloud.google.com/translate/v2/getting_started).
+Christopher Lucas and Dustin Tingley's [`translateR`](https://github.com/ChristopherLucas/translateR) package provides an interface to the Application Proframming Interfaces (APIs) for the [Google Translate](https://cloud.google.com/translate/v2/getting_started) and [Microsoft Translator](https://www.microsoft.com/en-us/translator/default.aspx) services for automated translation of text.  We propose to create an R package that wraps `translateR`, with functionality for integrating the automated translations into a package development workflow.
 
 ## Detail
 <!--
