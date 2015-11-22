@@ -12,7 +12,7 @@ It is important to cover:
 
 ## What the problem is
 
-R is used throughout the world.  The Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
+R is used throughout the world.  The [useR!](http://user2015.math.aau.dk/) conference in 2015 attracted [participants from 42 countries](http://blog.revolutionanalytics.com/2015/07/planning-of-and-some-stats-from-user-2015-aalborg.html), and the Revolution Analytics [Local R User Group Directory](http://blog.revolutionanalytics.com/local-r-groups.html) lists RUGs in almost 50 countries, but there is a strong bias towards groups in English-speaking nations.  **TODO: plot of number of RUGs in english-speaking countries vs. non-english-speaking countries.**
 
 ```{r, HowManyTranslations, echo = FALSE}
 suppressPackageStartupMessages(library(dplyr, quiet = TRUE))
