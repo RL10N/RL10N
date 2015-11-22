@@ -71,7 +71,7 @@ There is currently no single, developer-friendly document that describes how to 
 
 The `tools` package in the base-R distribution provide some functionality for working with the translation files, but manual editing of the files is often required, and errors are hard to debug.
 
-Beyond this, finding multi-lingual R programmers with enough free time to undertake translation duties is even harder. 
+Beyond this, finding multi-lingual R programmers with enough free time to undertake translation duties is even harder. The `translateR` and `translate` packages provide interfaces to the Google Translate API for automated translations. (`translateR` also provides an interface to the Microsoft Translator API).  These packages don't contain any functionality for integrating the translations into R packages.
 
 ## Why it should be tackled
 
