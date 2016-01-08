@@ -6,10 +6,13 @@ Covering the planning phase, this section should provide a relatively detailed p
 
 
  - [ ] Setting up collaboration platform inc. code for contributors etc.
- - [ ] Licence decisions
+ - [ ] Licence decisions currently msgtools is MIT, MTurkR is GPL-2, translateR is GPL-3
  - [ ] Reporting framework
 -->
 
+Projects will be hosted on github and include issue trackers.  these will be created within one week of project commencement.
+
+The packages will be licensed under the GNU GPL-3.
 
 ## Technical delivery
 <!--
@@ -28,3 +31,7 @@ Covering non-technical activities like on-going publicity, paper preparation, di
  - [ ] UseR!
  - [ ] ISC meetings
 -->
+
+The developers will publicise the project via their respective blogs, [http://4dpiecharts.com](4dpiecharts.com) and [thomasleeper.com](http://thomasleeper.com/blog.html), and via twitter.
+
+The developers will present on the project at the useR! conference in 2016 if their employers agree to fund their attendance at the conference.
