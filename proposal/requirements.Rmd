@@ -8,10 +8,17 @@ An idea of what is required to make the project actually happen
 Who needs to be involved, what's the proposed structure, what will it take to get their involvement?
 -->
 
+Feedback from R package developers on the quality and ease of use of the tools that we develop will be sought using social media, particularly blog posts syndicated on R Bloggers and twitter.
+
 ## Processes
 <!-- 
 What processes need to be put in place e.g. codes of conduct, regular ISC meetings, handover to the community at large?
 -->
+
+- The developers will hold a meeting once per week in order to discuss progress and future project strategy. 
+- Individual issues will be handled via github's issue tracking functionality.
+- The developers will provide a progress report to the ISC once per month.
+
 
 ## Tools & Tech
 <!--
@@ -22,13 +29,26 @@ Will cloud computing be used - if yes are there are necessary components that wi
 Are there tools or tech that don't exist that will be produced to facilitate the project?
 -->
 
+The project relies on several external cloud computing tools: Amazon’s Mechanical Turk, Google Translate, and Microsoft Translator.  Direct interfacing with these tools is not within the scope of the project; the interfaces already exist.
+
+Within the scope of the project, R is the only required tool.
+
 ## Funding
 <!-- 
 [TO DO] THE GUIDANCE IS PRETTY UNCLEAR, ESP IN LIGHT OF GABOR'S PROPOSAL VS AWARD SIZE
 
 -->
 
+Funding will primarily cover development time, with the remainder used towards the paid-for services on Amazon’s Mechanical Turk, Google Translate, and Microsoft Translator.  The budget breakdown
+
+- $9000 for the development of three R packages, split evenly between the two developers.
+- $600 for the use of Amazon Mechanical Turk.
+- $200 for the use of Google Translate.
+- $200 for the use of Microsoft Translator.
+
 ## Summary
 <!--
 A summary of the requirements that contextualises the costs
 -->
+
+This project has few external dependencies and risks, being focussed on the development of R packages.
