@@ -50,9 +50,13 @@ Including target dates is really important as you need to be committed and the I
 
 ### Week 11 to 12
 
-- Testing translation tools on existing packages.
+- Testing translation tools on existing packages of the authors.
 
 ### Week 13 to 14
+
+- Providing translations for high profile packages such as *ggplot2*, *Rcpp* and *(d)plyr*.
+
+### Week 15 to 16
 
 - Final tidying up of packages.
 
