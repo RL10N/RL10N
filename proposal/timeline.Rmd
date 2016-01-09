@@ -10,7 +10,7 @@ Covering the planning phase, this section should provide a relatively detailed p
  - [ ] Reporting framework
 -->
 
-Projects will be hosted on github and include issue trackers.  these will be created within one week of project commencement.
+Projects will be hosted on github and include issue trackers.
 
 The packages will be licensed under the GNU GPL-3.
 
@@ -20,6 +20,41 @@ Covering the actual delivery of the project this section should provide at least
 
 Including target dates is really important as you need to be committed and the ISC need to have a means of tracking delivery
 -->
+
+### Week 1 to 2
+
+- Create github repositories for the human and automated translation packages.
+- Determine the end-user interfaces, that is the high-level functions that are needed in order to have a sensible workflow.
+- Work on documentation for the *msgtools* package.
+
+### Week 3 to 4
+
+- Work on functionality for parsing, reading, and writing `PO` files.
+- Create functionality for automated translation of all messages in a package via Google Translate.
+
+### Week 5 to 6
+
+- Extend functionality for automated translation to Microsoft Translator backend.
+- More work on *msgtools* making translations easy to integrate into packages.
+- Research existing translation tasks on Amazon Mechanical Turk.
+
+### Week 7 to 8
+
+- Extend *msgtools* to work with C-level translations.
+- Create functionality to send a translation task to Amazon Mechanical Turk.
+
+### Week 9 to 10
+
+- Optimise Mechanical Turk template via A/B testing.
+- Create functionality in *msgtools* for finding content that needs to be translated.
+
+### Week 11 to 12
+
+- Testing translation tools on existing packages.
+
+### Week 13 to 14
+
+- Final tidying up of packages.
 
 ## Other aspects
 <!--
