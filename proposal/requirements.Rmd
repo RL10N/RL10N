@@ -29,7 +29,7 @@ Will cloud computing be used - if yes are there are necessary components that wi
 Are there tools or tech that don't exist that will be produced to facilitate the project?
 -->
 
-The project relies on several external cloud computing tools: Amazon’s Mechanical Turk, Google Translate, and Microsoft Translator.  Direct interfacing with these tools is not within the scope of the project; the interfaces already exist.
+The project relies on several external cloud computing tools: Amazon Mechanical Turk, Google Translate, and Microsoft Translator.  Direct interfacing with these tools is not within the scope of the project; the interfaces already exist.
 
 Within the scope of the project, R is the only required tool.
 
@@ -39,7 +39,7 @@ Within the scope of the project, R is the only required tool.
 
 -->
 
-Funding will primarily cover development time, with the remainder used towards the paid-for services on Amazon’s Mechanical Turk, Google Translate, and Microsoft Translator.  The budget breakdown
+Funding will primarily cover development time, with the remainder used towards the paid-for services on Amazon Mechanical Turk, Google Translate, and Microsoft Translator.  The budget breakdown
 
 - $9000 for the development of three R packages, split evenly between the two developers.
 - $600 for the use of Amazon Mechanical Turk.
