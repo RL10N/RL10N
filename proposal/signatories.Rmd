@@ -14,15 +14,15 @@ The project team consists of Richie Cotton and Thomas Leeper.
 
 Richie Cotton is a data scientist in the proteomics team at Weill Cornell Medicine in Qatar.  He has been using R for 11 years, is the author of many R packages (including 24 packages on CRAN), and has written two books on R: Learning R and the forthcoming Testing R Code.
 
-Thomas Leeper is TODO
+Thomas Leeper is assistant professor in political behaviour at The London School of Economics and Political Science.  He is the author of 14 packages on CRAN and contributor to many more, including the *msgtools* and *MTurkR* packages which are the focus of this project.
 
-## Contributors
 <!-- 
+## Contributors
 Who are the people who have actively helped with this proposal but won't necessarily be on the core project team later?
 -->
 
-## Consulted
 <!-- 
+## Consulted
 Who has been given the opportunity to provide feedback on the proposal? This should include any R Consortium & ISC members who the proposal has been discussed with.
 -->
 
