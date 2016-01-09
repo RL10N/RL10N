@@ -8,15 +8,24 @@ Projects should have a definition of done that is measurable, and a thorough und
 What does success look like? 
 -->
 
+The three proposed R packages have useful implementations available on CRAN.
+
 ## Measuring success
 <!-- 
 How will we know when success is achieved, what markers can we use along the way 
 -->
 
+Success will be achieved when it is possible to:
+
+- Easily create the infrastructure of including and updating translations in an R package.
+- Include Amazon Mechanical Turk, Google Translate, or Microsoft Translator tasks in an R package. 
+
 ## Future work
 <!-- 
 How could this be extended / developed in the future by yourself and/or the community in general?
 -->
+
+The main challenge for the future is getting the translation tools adopted by other package authors.  The end goal, beyond the development of these packages, is for everyone to be able to use in their native tongue.  
 
 ## Key risks
 <!-- 
@@ -28,3 +37,5 @@ What sort of things could come up that can delay or break the project?
  - [ ] Costs
 
 -->
+
+Since this project will be run by just two developers, the main risk is that one or both of the developers becomes unavailable to work for a time. 
