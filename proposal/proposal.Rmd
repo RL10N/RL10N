@@ -12,15 +12,15 @@ There are three areas that need to be tackled, and we propose to develop an R pa
 
 ### Tools for working with PO files
 
-Thomas Leeper's [`msgtools`](https://github.com/leeper/msgtools) package provides a wrapper for the translation functionality in the `tools` package.  It is currently a work-in-progress.  We propose to develop this package to be robust, well documented, and easy for novice package developers to use.
+Thomas Leeper's [*msgtools*](https://github.com/leeper/msgtools) package provides a wrapper for the translation functionality in the *tools* package.  It is currently a work-in-progress.  We propose to develop this package to be robust, well documented, and easy for novice package developers to use.
 
 ### Tools for finding people to translate content
 
-Thomas Leeper's [`MTurkR`](https://github.com/leeper/MTurkR) package provides an interface between R and Amazon's Mechanical Turk API, a marketplace for human intelligence tasks (HITs), including translation tasks.  We propose to a develop a package that wraps `MTurkR`, with functionality for creating and managing translation HITs.
+Thomas Leeper's [*MTurkR*](https://github.com/leeper/MTurkR) package provides an interface between R and Amazon's Mechanical Turk API, a marketplace for human intelligence tasks (HITs), including translation tasks.  We propose to a develop a package that wraps *MTurkR*, with functionality for creating and managing translation HITs.
 
 ### Tools for automated translation
 
-Christopher Lucas and Dustin Tingley's [`translateR`](https://github.com/ChristopherLucas/translateR) package provides an interface to the Application Proframming Interfaces (APIs) for the [Google Translate](https://cloud.google.com/translate/v2/getting_started) and [Microsoft Translator](https://www.microsoft.com/en-us/translator/default.aspx) services for automated translation of text.  We propose to create an R package that wraps `translateR`, with functionality for integrating the automated translations into a package development workflow.
+Christopher Lucas and Dustin Tingley's [*translateR*](https://github.com/ChristopherLucas/translateR) package provides an interface to the Application Proframming Interfaces (APIs) for the [Google Translate](https://cloud.google.com/translate/v2/getting_started) and [Microsoft Translator](https://www.microsoft.com/en-us/translator/default.aspx) services for automated translation of text.  We propose to create an R package that wraps *translateR*, with functionality for integrating the automated translations into a package development workflow.
 
 ## Detail
 <!--
@@ -32,3 +32,36 @@ Depending on project type the detail section should include:
  - [ ] Architecture
  - [ ] Assumptions
 -->
+
+### *msgtools* package
+
+The package needs functionality for:
+
+- Creating initial translation infrastructure (directories, master `POT` files).
+- Adding and checking new translation source files (`PO` files).
+- Building translation binary files (`MO` files).
+- Updating translations.
+- Checking packages for translatable content.
+- Converting non-translatable content (calls to `cat` and `sprintf`, for example) into translatable content.
+
+Creating vignettes and other documentation is also a high priority for this package.
+
+### Mechanical Turk human-translation package
+
+The package needs functionality for:
+
+- Specifying translation task templates.
+- Allowing the user to edit the template details.
+- Allowing submission and management of Mechanical Turk tasks.
+
+The R code for this package is relatively straightforward; the bulk of the work on this project will be discovering suitable details for Mechanical Turk task templates.  For example, what text works well to attract suitable workers, what constitutes a fair price for the task (this may differ by language).  A/B testing will be used to optimise the performance of templates.
+
+### Google Translate/Microsoft translator automatic-translation package
+
+The package needs functionality for:
+
+- Collating all messages from a package to be translated and submitting them to one of the translation services.
+- Creating `PO` translation source files from the results from the service.
+- Making sure that R keywords don't get translated.
+
+
