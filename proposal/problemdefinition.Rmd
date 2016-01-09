@@ -52,7 +52,7 @@ R has been translated into [20 languages](http://developer.r-project.org/Transla
 ) 
 ```
 
-Further, the selection of languages that are translated to is relatively limited.  As Figure 3 shows ... **TODO: Once we have R User Group numbers (or other usage-of-r stats), pick out any languages with users but no translations.**
+Further, the selection of languages that are translated to is relatively limited.  From Figure 3, you can see tha Mandarin Chinese (`zh_CN`), despite China having a large population of R users, has only three packages with translations.  Arabic, the fifth most commonly spoken language in the world, has no packages with translations.
 
 ```{r, NumberOfTranslationsByLang, echo = FALSE, fig.width = 9, fig.height = 6, fig.cap = "Figure 3: Number of translations by language."}
 (p_by_lang <- n_translations_by_lang %>% 
